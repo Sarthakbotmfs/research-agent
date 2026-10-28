@@ -22,6 +22,14 @@ async def event_generator(
     last_seq = start_seq
     ping_counter = 0
 
+    # Ensure orchestrator is active if task is pending (crucial in serverless environments)
+    async with AsyncSessionLocal() as session:
+        repo = ResearchRepository(session)
+        task = await repo.get_task(task_id)
+        if task and task.status == "pending":
+            from .research import run_orchestration_background
+            asyncio.create_task(run_orchestration_background(task_id))
+
     while True:
         # Check if client disconnected
         if await request.is_disconnected():

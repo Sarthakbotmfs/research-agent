@@ -42,14 +42,27 @@ AsyncSessionLocal = async_sessionmaker(
 )
 
 
+_db_initialized = False
+
+
 async def init_db() -> None:
     """Creates database tables if they do not exist."""
+    global _db_initialized
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    _db_initialized = True
+
+
+async def ensure_db_initialized() -> None:
+    """Guarantees DB schema exists in environments where lifespan is not called."""
+    global _db_initialized
+    if not _db_initialized:
+        await init_db()
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """Dependency for providing an async database session."""
+    await ensure_db_initialized()
     async with AsyncSessionLocal() as session:
         try:
             yield session

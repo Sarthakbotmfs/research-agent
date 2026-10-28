@@ -63,6 +63,9 @@ class ResearchOrchestrator:
         if not task:
             logger.error(f"Task {task_id} not found.")
             return
+        if task.status not in ("pending",):
+            logger.info(f"Task {task_id} already in status '{task.status}', skipping.")
+            return
 
         # Stage 1: Validate claim and configure limits
         task_config = task.config or {}
