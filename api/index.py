@@ -17,6 +17,5 @@ async def debug_endpoint(request: Request):
     return {
         "url_path": request.url.path,
         "scope_path": request.scope.get("path"),
-        "root_path": request.scope.get("root_path"),
-        "routes": [route.path for route in app.routes if hasattr(route, "path")],
+        "headers": dict(request.headers),
     }
