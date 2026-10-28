@@ -15,6 +15,12 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str = "sqlite+aiosqlite:///./data/research_agent.db"
 
+    @property
+    def effective_database_url(self) -> str:
+        if os.environ.get("VERCEL"):
+            return "sqlite+aiosqlite:////tmp/research_agent.db"
+        return self.DATABASE_URL
+
     # LLM Provider Configuration
     LLM_PROVIDER: str = "openai"
     LLM_BASE_URL: str = "https://api.openai.com/v1"

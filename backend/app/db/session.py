@@ -8,16 +8,17 @@ from ..core.config import get_settings
 from .base import Base
 
 settings = get_settings()
+db_url = settings.effective_database_url
 
 # Ensure directory for sqlite db file exists if file-based
-if settings.DATABASE_URL.startswith("sqlite+aiosqlite:///"):
-    db_path = settings.DATABASE_URL.replace("sqlite+aiosqlite:///", "")
+if db_url.startswith("sqlite+aiosqlite:///"):
+    db_path = db_url.replace("sqlite+aiosqlite:///", "")
     db_dir = os.path.dirname(db_path)
     if db_dir:
         os.makedirs(db_dir, exist_ok=True)
 
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    db_url,
     echo=(settings.LOG_LEVEL.upper() == "DEBUG"),
     future=True,
 )
