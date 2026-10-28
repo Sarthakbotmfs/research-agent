@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0b0f17] text-slate-200 antialiased font-sans min-h-screen selection:bg-sky-500/30 selection:text-sky-200;
+  }
+}
+
+/* Custom restrained scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222d42;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #323f58;
+}
+
+/* Markdown styling inside report */
+.prose-academic h1 {
+  @apply text-xl font-semibold text-slate-100 mt-6 mb-3 border-b border-slate-800 pb-2;
+}
+
+.prose-academic h2 {
+  @apply text-lg font-medium text-slate-200 mt-5 mb-2;
+}
+
+.prose-academic h3 {
+  @apply text-base font-medium text-slate-300 mt-4 mb-2;
+}
+
+.prose-academic p {
+  @apply text-sm leading-relaxed text-slate-300 mb-3;
+}
+
+.prose-academic ul {
+  @apply list-disc list-inside text-sm text-slate-300 space-y-1 mb-3;
+}
+
+.prose-academic ol {
+  @apply list-decimal list-inside text-sm text-slate-300 space-y-1 mb-3;
+}
+
+.prose-academic blockquote {
+  @apply border-l-2 border-sky-500/60 pl-3 italic text-slate-400 my-2;
+}
+
+.prose-academic a {
+  @apply text-sky-400 hover:text-sky-300 underline underline-offset-2;
+}
