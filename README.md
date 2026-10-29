@@ -1,6 +1,12 @@
 # Research Agent (Phase 1)
 
+[![Live Demo](https://img.shields.io/badge/Demo-Vercel%20Live-brightgreen?style=for-the-badge&logo=vercel)](https://research-agent-taupe-eta.vercel.app)
+[![Tests](https://img.shields.io/badge/Tests-33%20Passed-success?style=for-the-badge&logo=pytest)](https://github.com/Sarthakbotmfs/research-agent)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+
 An evidence-grounded, local-first research agent application for Windows. It accepts a technical or scientific claim, autonomously discovers scholarly material from **OpenAlex** and **Crossref**, extracts and classifies evidence into empirical categories (Supporting, Contradicting, Common Ground, and Insufficient), and generates a fully traceable research report with citation links and export capabilities.
+
+**Live Deployment:** [https://research-agent-taupe-eta.vercel.app](https://research-agent-taupe-eta.vercel.app)
 
 ---
 
